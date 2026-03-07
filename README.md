@@ -19,7 +19,7 @@ The repository is organized so that another developer can easily clone the proje
 
 ACEestFitnessGym/
 
-├── app.py               # Flask application
+├── app.py               #Flask application
 
 ├── requirements.txt     # Python dependencies
 
