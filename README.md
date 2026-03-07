@@ -138,6 +138,13 @@ docker build -t aceest-app .
 
 A successful build confirms that the project can be tested and packaged automatically.
 
+## Jenkins Build Result
+
+The Jenkins job successfully installs dependencies, runs the test suite,
+and builds the Docker image.
+
+Build status: Finished: SUCCESS
+
 ---
 
 ## CI/CD Workflow Overview
