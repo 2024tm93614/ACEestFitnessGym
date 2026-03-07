@@ -31,7 +31,7 @@ ACEestFitnessGym/
 
   └── test_app.py      # Pytest test cases
 
-└── .github/
+├──.github/
 
     └── workflows/
     
