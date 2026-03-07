@@ -28,10 +28,13 @@ ACEestFitnessGym/
 ├── README.md            # Project documentation
 
 ├── tests/
+
 │   └── test_app.py      # Pytest test cases
 
 └── .github/
+
     └── workflows/
+    
         └── main.yml       # GitHub Actions workflow
 ---
 
