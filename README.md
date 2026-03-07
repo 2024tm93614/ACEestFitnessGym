@@ -19,8 +19,11 @@ The repository is organized so that another developer can easily clone the proje
 
 ACEestFitnessGym/
 ├── app.py               # Flask application
+
 ├── requirements.txt     # Python dependencies
+
 ├── Dockerfile           # Container configuration
+
 ├── README.md            # Project documentation
 ├── tests/
 │   └── test_app.py      # Pytest test cases
