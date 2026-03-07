@@ -29,7 +29,7 @@ ACEestFitnessGym/
 
 ├── tests/
 
-│   └── test_app.py      # Pytest test cases
+  └── test_app.py      # Pytest test cases
 
 └── .github/
 
