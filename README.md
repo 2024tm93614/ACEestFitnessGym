@@ -17,19 +17,16 @@ The repository is organized so that another developer can easily clone the proje
 
 ## Project Structure
 
-ACEestFitnessGym
-│
-├── app.py – Flask application
-├── requirements.txt – Python dependencies
-├── Dockerfile – Container configuration
-├── README.md – Project documentation
-
-tests/
-└── test_app.py – Pytest test cases
-
-.github/workflows/
-└── ci.yml – GitHub Actions workflow
-
+ACEestFitnessGym/
+├── app.py               # Flask application
+├── requirements.txt     # Python dependencies
+├── Dockerfile           # Container configuration
+├── README.md            # Project documentation
+├── tests/
+│   └── test_app.py      # Pytest test cases
+└── .github/
+    └── workflows/
+        └── ci.yml       # GitHub Actions workflow
 ---
 
 ## Running the Application Locally
