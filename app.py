@@ -20,14 +20,27 @@ def init_database():
 @app.route("/add")
 def add_member():
     global members
-    new_member = {"name": "Rahul", "plan": "Premium"}
+
+    new_member = {
+        "id": len(members) + 1,
+        "name": f"Member{len(members)+1}",
+        "plan": "Premium"
+    }
+
     members.append(new_member)
-    return jsonify({"message": "Member added", "member": new_member})
+
+    return jsonify({
+        "message": "Member added successfully",
+        "member": new_member
+    })
 
 
 @app.route("/members")
 def get_members():
-    return jsonify(members)
+    return jsonify({
+        "count": len(members),
+        "members": members
+    })
 
 
 if __name__ == "__main__":
