@@ -46,6 +46,16 @@ def get_members():
         "members": members
     })
 
+@app.route("/delete/<int:member_id>")
+def delete_member(member_id):
+    global members
+
+    members = [m for m in members if m["id"] != member_id]
+
+    return jsonify({
+        "message": f"Member {member_id} deleted"
+    })
+
 @app.route("/health")
 def health_check():
     return jsonify({"status": "API is running"})
