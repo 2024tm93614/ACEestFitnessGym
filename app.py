@@ -41,8 +41,11 @@ def add_member():
 
 @app.route("/members")
 def get_members():
+    if not members:
+        return jsonify({"message": "No members found"})
+
     return jsonify({
-        "count": len(members),
+        "total_members": len(members),
         "members": members
     })
 
