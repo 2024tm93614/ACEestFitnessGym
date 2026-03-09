@@ -7,7 +7,11 @@ members = []
 
 @app.route("/")
 def home():
-    return jsonify({"message": "Welcome to ACEest Fitness & Gym API"})
+    return jsonify({
+        "application": "ACEest Fitness & Gym API",
+        "version": "1.3",
+        "status": "running"
+    })
 
 
 @app.route("/init")
