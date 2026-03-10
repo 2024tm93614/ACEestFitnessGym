@@ -69,6 +69,19 @@ You should see the application running locally.
 
 ---
 
+## Features
+
+The Flask API provides the following endpoints:
+
+| Endpoint | Description |
+|--------|-------------|
+| `/` | Welcome message |
+| `/init` | Initializes the member database |
+| `/add` | Adds a sample gym member |
+| `/members` | Returns the list of members |
+
+These endpoints are used by the automated tests to verify the application functionality.
+
 ## Running the Tests
 
 The project uses Pytest for automated testing.
@@ -122,6 +135,21 @@ The pipeline performs the following steps:
 
 If all tests pass, the workflow finishes successfully and a green check mark appears in the Actions tab of the repository.
 
+---
+## Version Control
+
+The project development was carried out using incremental commits to demonstrate version control practices.
+
+Example commit progression:
+
+Version 1.0 – Initial Flask API  
+Version 1.1 – Improved member management  
+Version 1.2 – Added health endpoint  
+Version 1.3 – Enhanced API responses  
+Version 1.4 – Added delete member endpoint  
+Version 1.5 – Improved members API response
+
+Each version was pushed to GitHub and automatically validated by the CI pipeline.
 ---
 
 ## Jenkins Build
@@ -187,4 +215,7 @@ Key tools used in the project include:
 * GitHub Actions
 * Jenkins
 
-Together, these tools help ensure that changes to the application are tested and validated before deployment.
+## Author
+
+DevOps Assignment  
+ACEest Fitness Gym API  
