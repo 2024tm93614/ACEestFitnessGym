@@ -9,7 +9,7 @@ members = []
 def home():
     return jsonify({
         "application": "ACEest Fitness & Gym API",
-        "version": "1.3",
+        "version": "v1 (BLUE)",
         "status": "running"
     })
 
