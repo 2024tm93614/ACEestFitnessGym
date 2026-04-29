@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aceest-canary-new
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aceest-canary
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: aceest-canary
+        version: v2
+    spec:
+      containers:
+      - name: aceest-container
+        image: 2024tm93614/aceest-devops-app:canary-v2
+        ports:
+        - containerPort: 5000

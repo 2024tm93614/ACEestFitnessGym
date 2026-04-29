@@ -7,12 +7,24 @@ members = []
 
 @app.route("/")
 def home():
-    return jsonify({
-        "application": "ACEest Fitness & Gym API",
-        "version": "v2 (CANARY)",
-        "status": "running"
-    })
+    return {
+        "message": "Use /v1 or /v2 for A/B testing"
+    }
 
+
+@app.route("/v1")
+def old_version():
+    return {
+        "version": "v1 (A/B TEST - OLD)",
+        "message": "This is old version"
+    }
+
+@app.route("/v2")
+def new_version():
+    return {
+        "version": "v2 (A/B TEST - NEW)",
+        "message": "This is new version"
+    }
 
 @app.route("/init")
 def init_database():
