@@ -1,0 +1,21 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aceest-blue
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: aceest-blue
+  template:
+    metadata:
+      labels:
+        app: aceest-blue
+    spec:
+      containers:
+      - name: aceest-container
+        image: 2024tm93614/aceest-devops-app:blue-v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
