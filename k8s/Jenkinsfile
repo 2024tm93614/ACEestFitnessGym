@@ -1,41 +1,75 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = "2024tm93614/aceest-devops-app"
+        TAG = "v${BUILD_NUMBER}"
+    }
+
     stages {
 
-        stage('Clone') {
+        stage('Install Dependencies') {
             steps {
-                git 'https://github.com/2024tm93614/ACEestFitnessGym'
+                sh '''
+                echo Installing dependencies
+                python3 -m pip install --upgrade pip
+                python3 -m pip install -r requirements.txt || true
+                '''
             }
         }
 
-        stage('Build Docker') {
+        stage('Run Tests') {
             steps {
-                sh 'docker build -t aceest-app .'
+                sh '''
+                echo Running tests
+                pytest || true
+                '''
             }
         }
 
-        stage('Test') {
+        stage('Build Docker Image') {
             steps {
-                sh 'pytest || true'
+                sh '''
+                echo Building Docker image
+                docker build -t $IMAGE_NAME:$TAG .
+                '''
             }
         }
 
-        stage('Tag Image') {
+        stage('Docker Login') {
             steps {
-                sh 'docker tag aceest-app 2024tm93614/aceest-devops-app:jenkins'
+                withCredentials([usernamePassword(
+                    credentialsId: 'docker-hub-creds',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    sh '''
+                    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                    '''
+                }
             }
         }
 
-        stage('Push Image') {
+        stage('Push Docker Image') {
             steps {
-                sh 'docker push 2024tm93614/aceest-devops-app:jenkins'
+                sh '''
+                echo Pushing image
+                docker push $IMAGE_NAME:$TAG
+                '''
             }
         }
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'kubectl apply -f k8s/'
+                sh '''
+                echo Deploying to Kubernetes
+
+                kubectl config use-context minikube || true
+                kubectl get nodes || true
+
+                # Update your deployment (change name if needed)
+                kubectl set image deployment/aceest-green aceest-container=$IMAGE_NAME:$TAG || true
+                '''
             }
         }
     }
