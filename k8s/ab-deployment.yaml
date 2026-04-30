@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aceest-ab
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: aceest-ab
+  template:
+    metadata:
+      labels:
+        app: aceest-ab
+    spec:
+      containers:
+      - name: aceest-container
+        image: 2024tm93614/aceest-devops-app:ab-test
+        ports:
+        - containerPort: 5000

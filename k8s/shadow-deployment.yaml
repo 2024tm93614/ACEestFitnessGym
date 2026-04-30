@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aceest-shadow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aceest-shadow
+  template:
+    metadata:
+      labels:
+        app: aceest-shadow
+    spec:
+      containers:
+      - name: aceest-container
+        image: 2024tm93614/aceest-devops-app:v2
+        ports:
+        - containerPort: 5000

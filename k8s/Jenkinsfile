@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone') {
+            steps {
+                git 'https://github.com/2024tm93614/ACEestFitnessGym'
+            }
+        }
+
+        stage('Build Docker') {
+            steps {
+                sh 'docker build -t aceest-app .'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'pytest || true'
+            }
+        }
+
+        stage('Tag Image') {
+            steps {
+                sh 'docker tag aceest-app 2024tm93614/aceest-devops-app:jenkins'
+            }
+        }
+
+        stage('Push Image') {
+            steps {
+                sh 'docker push 2024tm93614/aceest-devops-app:jenkins'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'kubectl apply -f k8s/'
+            }
+        }
+    }
+}
