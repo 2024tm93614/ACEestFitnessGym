@@ -4,8 +4,6 @@ pipeline {
     environment {
         IMAGE_NAME = "2024tm93614/aceest-devops-app"
         TAG = "v${BUILD_NUMBER}"
-
-        // ✅ Fix PATH for macOS (important)
         PATH = "/Library/Frameworks/Python.framework/Versions/3.14/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     }
 
@@ -79,16 +77,12 @@ pipeline {
             steps {
                 sh '''
                 echo Deploying to Kubernetes
-
-                # Ensure kubeconfig is accessible
                 export KUBECONFIG=$HOME/.kube/config
-
                 kubectl config use-context minikube || true
                 kubectl get nodes || true
-
-                # Deploy update
                 kubectl set image deployment/aceest-green aceest-container=$IMAGE_NAME:$TAG || true
                 '''
             }
         }
     }
+}
